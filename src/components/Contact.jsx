@@ -37,7 +37,7 @@ function Contact() {
         onSubmit={handleSubmit}
       >
         {({ touched, errors }) => (
-          <Form className="w-full max-w-lg space-y-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+          <Form className="w-full max-w-lg space-y-8 p-6">
             {/* Nom */}
             <motion.div
               className="flex flex-col"

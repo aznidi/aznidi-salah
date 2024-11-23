@@ -36,29 +36,45 @@ function Navbar() {
             )}
           </button>
 
-          {/* Liens de navigation */}
-          <motion.div
-            initial={isOpen ? { opacity: 0, x: -50 } : { opacity: 1, x: 0 }}
-            animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 1 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-            className={`md:flex md:items-center md:space-x-10 font-poppins ${
-              isOpen ? "block" : "hidden"
-            }`}
-          >
+          {/* Liens de navigation pour desktop */}
+          <div className="hidden md:flex md:items-center md:justify-end md:space-x-10 font-poppins">
             {["accueil", "projets", "contactez-moi"].map((link, index) => (
               <a
                 key={index}
                 href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
-                className="relative block mt-3 md:mt-0 text-lg text-yellow-400 transition group"
+                className="relative block text-lg text-yellow-400 transition group"
               >
                 {link}
                 {/* Effet visuel du lien */}
                 <span className="absolute left-0 bottom-0 h-[3px] w-0 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
-          </motion.div>
+          </div>
         </div>
+
+        {/* Menu mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -50 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 0.5 }}
+          className={`md:hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-40 ${
+            isOpen ? "block" : "hidden"
+          }`}
+        >
+          <div className="text-center text-yellow-500 space-y-6">
+            {["accueil", "projets", "contactez-moi"].map((link, index) => (
+              <a
+                key={index}
+                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                className="block text-2xl font-bold transition-all duration-300 hover:text-yellow-400"
+                onClick={() => setIsOpen(false)} // Ferme le menu lors du clic sur un lien
+              >
+                {link}
+              </a>
+            ))}
+          </div>
+        </motion.div>
       </motion.nav>
     </header>
   );

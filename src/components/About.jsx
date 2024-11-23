@@ -31,7 +31,7 @@ function About() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
       >
-        À propos de moi
+        Parcours Scolaire
       </motion.h2>
 
       {/* Timeline Section */}

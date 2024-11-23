@@ -51,12 +51,13 @@ function Hero() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#"
+            href="/cv.pdf"  // Lien vers le fichier PDF dans le dossier public
+            target="_blank" // Ouvre le PDF dans un nouvel onglet
+            rel="noopener noreferrer" // Sécurise l'ouverture du lien
             className="rounded-md font-poppins bg-yellow-500 px-6 py-3 text-lg font-bold text-gray-800 shadow-lg hover:bg-yellow-400 hover:shadow-yellow-500 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
           >
             Explorez mon CV
           </a>
-
         </motion.div>
       </motion.div>
     </div>

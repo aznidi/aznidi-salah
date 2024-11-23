@@ -1,7 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useForm } from '@formspree/react';
 import * as Yup from "yup";
+import { Audio } from "react-loader-spinner";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Validation Schema using Yup
 const validationSchema = Yup.object({
@@ -12,10 +16,11 @@ const validationSchema = Yup.object({
 
 function Contact() {
   // Handler de soumission de formulaire
-  const handleSubmit = (values) => {
-    // Vous pouvez ici gérer l'envoi des données du formulaire (par exemple vers un API)
-    console.log(values);
-  };
+  const [state, handleSubmit] = useForm("xanydyqk");
+  const succededMessage = () => toast.success('un message est envoyé avec succès');
+  const errorMessage = () => toast.error("une erreur s'est produite.");
+  
+  
 
   return (
     <section id="contactez-moi" className="font-poppins relative isolate px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 min-h-screen flex flex-col items-center">
@@ -95,13 +100,28 @@ function Contact() {
             {/* Submit Button */}
             <motion.button
               type="submit"
-              className="w-full mt-6 bg-yellow-500 text-gray-800 font-semibold py-3 rounded-md hover:bg-yellow-400 transition-all duration-300"
+              className=" flex justify-center text-center items-center w-full mt-6 bg-yellow-500 text-gray-800 font-semibold py-3 rounded-md hover:bg-yellow-400 transition-all duration-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
+              onClick={state.succeeded ? succededMessage: errorMessage}
             >
-              Envoyer
+              {
+                !state.submitting ? 'Envoyer' : 
+                <Audio 
+                height="25"
+                width="25"
+                radius="9"
+                color="green"
+                ariaLabel="loading"
+                wrapperStyle
+                wrapperClass
+                />
+              }
+              
             </motion.button>
+              
+            <ToastContainer position="bottom-right"/>
           </Form>
         )}
       </Formik>

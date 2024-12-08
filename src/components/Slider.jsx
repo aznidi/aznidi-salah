@@ -33,6 +33,24 @@ const SliderComponent = ({ title, skills }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [controls, title]);
 
+  // Generate random line styles
+  const generateRandomLineStyles = () => {
+    const randomTop = Math.random() * 100 + "%";
+    const randomLeft = Math.random() * 100 + "%";
+    const randomRotation = Math.random() * 180 + "deg";
+    const randomLength = Math.random() * 100 + "px";
+    const randomWidth = Math.random() * 2 + "px"; // Thin lines
+    return {
+      top: randomTop,
+      left: randomLeft,
+      transform: `rotate(${randomRotation})`,
+      width: randomLength,
+      height: randomWidth,
+    };
+  };
+
+  const lines = Array.from({ length: 10 }).map(() => generateRandomLineStyles());
+
   return (
     <motion.div
       id={title}
@@ -40,6 +58,15 @@ const SliderComponent = ({ title, skills }) => {
       animate={controls}
       className="relative w-full mb-20"
     >
+      {/* Decorative lines */}
+      {lines.map((lineStyle, index) => (
+        <div
+          key={index}
+          className="absolute bg-yellow-500"
+          style={lineStyle}
+        />
+      ))}
+
       {/* Section Title */}
       <motion.h3
         className="text-1xl font-semibold text-center mb-6 font-poppins"
@@ -121,7 +148,6 @@ const Slider = () => {
     { name: "Excel", img: "https://logodownload.org/wp-content/uploads/2020/04/excel-logo-0.png" },
     { name: "Word", img: "https://logodownload.org/wp-content/uploads/2018/10/word-logo-8.png" },
     { name: "Power Point", img: "https://download.logo.wine/logo/Microsoft_PowerPoint/Microsoft_PowerPoint-Logo.wine.png" }
-    
   ];
 
   return (

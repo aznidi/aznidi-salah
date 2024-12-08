@@ -14,16 +14,44 @@ const validationSchema = Yup.object({
   message: Yup.string().required("Le message est requis."),
 });
 
+// Function to generate random line styles
+const generateRandomLineStyles = () => {
+  const randomTop = Math.random() * 100 + "%";
+  const randomLeft = Math.random() * 100 + "%";
+  const randomRotation = Math.random() * 180 + "deg";
+  const randomLength = Math.random() * 100 + "px";
+  const randomWidth = Math.random() * 2 + "px"; // Thin lines
+  return {
+    top: randomTop,
+    left: randomLeft,
+    transform: `rotate(${randomRotation})`,
+    width: randomLength,
+    height: randomWidth,
+  };
+};
+
 function Contact() {
   // Handler de soumission de formulaire
   const [state, handleSubmit] = useForm("xanydyqk");
-  const succededMessage = () => toast.success('un message est envoyé avec succès');
-  const errorMessage = () => toast.error("une erreur s'est produite.");
-  
-  
+  const succededMessage = () => toast.success('Un message a été envoyé avec succès');
+  const errorMessage = () => toast.error("Une erreur s'est produite.");
+
+  // Generate 15 random lines
+  const lines = Array.from({ length: 15 }).map(() => generateRandomLineStyles());
 
   return (
     <section id="contactez-moi" className="font-poppins relative isolate px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 min-h-screen flex flex-col items-center">
+      {/* Render random lines */}
+      {lines.map((line, index) => (
+        <motion.div
+          key={index}
+          className="absolute bg-yellow-500"
+          style={line}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 2, repeat: Infinity, repeatType: "reverse" } }}
+        />
+      ))}
+
       <motion.h2
         className="text-4xl font-bold text-center mb-12 mt-20"
         initial={{ opacity: 0, y: 50 }}
@@ -100,27 +128,26 @@ function Contact() {
             {/* Submit Button */}
             <motion.button
               type="submit"
-              className=" flex justify-center text-center items-center w-full mt-6 bg-yellow-500 text-gray-800 font-semibold py-3 rounded-md hover:bg-yellow-400 transition-all duration-300"
+              className="flex justify-center text-center items-center w-full mt-6 bg-yellow-500 text-gray-800 font-semibold py-3 rounded-md hover:bg-yellow-400 transition-all duration-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              onClick={state.succeeded ? succededMessage: errorMessage}
+              onClick={state.succeeded ? succededMessage : errorMessage}
             >
               {
                 !state.submitting ? 'Envoyer' : 
                 <Audio 
-                height="25"
-                width="25"
-                radius="9"
-                color="green"
-                ariaLabel="loading"
-                wrapperStyle
-                wrapperClass
+                  height="25"
+                  width="25"
+                  radius="9"
+                  color="green"
+                  ariaLabel="loading"
+                  wrapperStyle
+                  wrapperClass
                 />
               }
-              
             </motion.button>
-              
+
             <ToastContainer position="bottom-right"/>
           </Form>
         )}

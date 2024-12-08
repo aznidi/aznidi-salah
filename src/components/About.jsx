@@ -24,8 +24,34 @@ const timeline = [
 ];
 
 function About() {
+  const generateRandomLineStyles = () => {
+    const randomTop = Math.random() * 100 + "%";
+    const randomLeft = Math.random() * 100 + "%";
+    const randomRotation = Math.random() * 180 + "deg";
+    const randomLength = Math.random() * 100 + "px";
+    const randomWidth = Math.random() * 2 + "px"; // Thin lines
+    return {
+      top: randomTop,
+      left: randomLeft,
+      transform: `rotate(${randomRotation})`,
+      width: randomLength,
+      height: randomWidth,
+    };
+  };
+
+  const lines = Array.from({ length: 15 }).map(() => generateRandomLineStyles());
+
   return (
     <section className="font-poppins relative isolate px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 min-h-screen flex flex-col items-center overflow-x-hidden">
+      {/* Decorative lines */}
+      {lines.map((lineStyle, index) => (
+        <div
+          key={index}
+          className="absolute bg-yellow-500"
+          style={lineStyle}
+        />
+      ))}
+
       <motion.h2
         className="text-4xl font-bold text-center mb-12 mt-5"
         initial={{ opacity: 0, y: 50 }}
@@ -75,7 +101,6 @@ function About() {
         </div>
       </div>
     </section>
-
   );
 }
 

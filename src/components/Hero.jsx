@@ -29,6 +29,23 @@ function Hero() {
     changeText();
   }, []);
 
+  const generateRandomLineStyles = () => {
+    const randomTop = Math.random() * 100 + "%";
+    const randomLeft = Math.random() * 100 + "%";
+    const randomRotation = Math.random() * 180 + "deg";
+    const randomLength = Math.random() * 100 + "px";
+    const randomWidth = Math.random() * 2 + "px"; // Thin lines
+    return {
+      top: randomTop,
+      left: randomLeft,
+      transform: `rotate(${randomRotation})`,
+      width: randomLength,
+      height: randomWidth,
+    };
+  };
+
+  const lines = Array.from({ length: 15 }).map(() => generateRandomLineStyles());
+
   return (
     <div
       id="accueil"
@@ -47,6 +64,15 @@ function Hero() {
           className="relative left-1/2 aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-yellow-500 to-gray-800 opacity-30 sm:w-[72.1875rem]"
         />
       </div>
+
+      {/* Decorative lines */}
+      {lines.map((lineStyle, index) => (
+        <div
+          key={index}
+          className="absolute bg-yellow-500"
+          style={lineStyle}
+        />
+      ))}
 
       <div className="flex flex-col items-center justify-center w-full max-w-3xl text-center">
         {/* Animated Text */}

@@ -5,8 +5,24 @@ import portfolio from '../assets/image.png'
 import enote from '../assets/enote.png'
 import isgihub from '../assets/isgihub.png'
 
+const generateRandomLineStyles = () => {
+  const randomTop = Math.random() * 100 + "%";
+  const randomLeft = Math.random() * 100 + "%";
+  const randomRotation = Math.random() * 180 + "deg";
+  const randomLength = Math.random() * 100 + "px";
+  const randomWidth = Math.random() * 2 + "px"; // Thin lines
+  return {
+    top: randomTop,
+    left: randomLeft,
+    transform: `rotate(${randomRotation})`,
+    width: randomLength,
+    height: randomWidth,
+  };
+};
+
 const ProjectCard = ({ title, description, image, liveLink, githubLink }) => {
   const isLiveLinkAvailable = Boolean(liveLink);
+  const lines = Array.from({ length: 3 }).map(() => generateRandomLineStyles()); // Trois lignes par carte
 
   return (
     <motion.div
@@ -22,9 +38,7 @@ const ProjectCard = ({ title, description, image, liveLink, githubLink }) => {
         href={isLiveLinkAvailable ? liveLink : "#"}
         target={isLiveLinkAvailable ? "_blank" : ""}
         rel={isLiveLinkAvailable ? "noopener noreferrer" : ""}
-        className={`block ${
-          isLiveLinkAvailable ? "cursor-pointer" : "cursor-not-allowed"
-        }`}
+        className={`block ${isLiveLinkAvailable ? "cursor-pointer" : "cursor-not-allowed"}`}
       >
         {/* Image Section */}
         <motion.div
@@ -41,16 +55,23 @@ const ProjectCard = ({ title, description, image, liveLink, githubLink }) => {
             className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             <p className="text-yellow-500 text-lg font-bold">
-              {isLiveLinkAvailable
-                ? "Consultez le projet"
-                : "Lien indisponible"}
+              {isLiveLinkAvailable ? "Consultez le projet" : "Lien indisponible"}
             </p>
           </div>
         </motion.div>
       </a>
 
       {/* Description Section */}
-      <div className="p-4 flex flex-col justify-between bg-gray-800">
+      <div className="p-4 flex flex-col justify-between bg-gray-800 relative">
+        {/* Decorative lines */}
+        {lines.map((lineStyle, index) => (
+          <div
+            key={index}
+            className="absolute bg-yellow-500"
+            style={lineStyle}
+          />
+        ))}
+
         <h3 className="text-xl font-bold text-yellow-500 mb-2">{title}</h3>
         <p className="text-gray-300 text-sm mb-4">{description}</p>
 
@@ -92,7 +113,7 @@ const ProjetSection = () => {
       image: enote,
       liveLink: null,
       githubLink: null,
-    },    
+    },
     {
       title: "ISGIHub",
       description: "Une plateforme communautaire pour faciliter l'échange de documents entre les stagiaires.",

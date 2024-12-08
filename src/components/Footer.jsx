@@ -8,10 +8,10 @@ import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
 const generateRandomLineStyles = () => {
   const randomTop = Math.random() * 100 + "%";
-  const randomLeft = Math.random() * 100 + "%";
-  const randomRotation = Math.random() * 180 + "deg";
-  const randomLength = Math.random() * 94 + "px";
-  const randomWidth = Math.random() * 2 + "px"; // Thin lines
+  const randomLeft = Math.random() * 70 + "%";
+  const randomRotation = Math.random() * 190 + "deg";
+  const randomLength = Math.random() * 70 + "px";
+  const randomWidth = Math.random() * 1 + "px"; // Thin lines
   return {
     top: randomTop,
     left: randomLeft,
@@ -19,7 +19,7 @@ const generateRandomLineStyles = () => {
     width: randomLength,
     height: randomWidth,
   };
-};
+};p
 
 
 function Footer() {

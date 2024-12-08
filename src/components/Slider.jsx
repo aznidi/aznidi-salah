@@ -36,10 +36,10 @@ const SliderComponent = ({ title, skills }) => {
   // Generate random line styles
   const generateRandomLineStyles = () => {
     const randomTop = Math.random() * 100 + "%";
-    const randomLeft = Math.random() * 100 + "%";
-    const randomRotation = Math.random() * 180 + "deg";
-    const randomLength = Math.random() * 100 + "px";
-    const randomWidth = Math.random() * 2 + "px"; // Thin lines
+    const randomLeft = Math.random() * 70 + "%";
+    const randomRotation = Math.random() * 190 + "deg";
+    const randomLength = Math.random() * 70 + "px";
+    const randomWidth = Math.random() * 1 + "px"; // Thin lines
     return {
       top: randomTop,
       left: randomLeft,

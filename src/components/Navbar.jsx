@@ -1,9 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Détecter le défilement et ajouter le flou
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Nettoyer l'événement lors du démontage du composant
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header>
@@ -11,17 +30,21 @@ function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="p-4 bg-transparent text-yellow-500 fixed top-0 left-0 right-0 z-50"
+        className={`shadow-md p-4 bg-transparent text-yellow-500 fixed top-0 left-0 right-0 z-50 ${scrolled ? 'backdrop-blur-sm' : ''}`}
       >
         <div className="container mx-auto flex justify-between items-center">
-          {/* Nom à gauche */}
+          {/* Image de profil à gauche */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-2xl font-extrabold font-poppins tracking-wide"
+            className="flex items-center"
           >
-            Aznidi Salah
+            <img
+              src="/profilebg.png" // Assurez-vous que le fichier profile.png est bien dans le dossier public
+              alt="Profile"
+              className="w-10 h-10 rounded-full md:w-10 md:h-10 object-cover cursor-pointer "
+            />
           </motion.div>
 
           {/* Menu hamburger pour mobile */}

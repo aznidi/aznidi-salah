@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
+
+gsap.registerPlugin(TextPlugin);
 
 function Hero() {
+  const changingTextRef = useRef(null);
+
+  useEffect(() => {
+    const texts = ["Salah Aznidi", "un Développeur Fullstack"];
+    let currentIndex = 0;
+
+    const changeText = () => {
+      if (changingTextRef.current) {
+        gsap.to(changingTextRef.current, {
+          duration: 2,
+          text: texts[currentIndex],
+          ease: "power3.inOut",
+          onComplete: () => {
+            currentIndex = (currentIndex + 1) % texts.length;
+            setTimeout(changeText, 2000);
+          },
+        });
+      }
+    };
+
+    changeText();
+  }, []);
+
   return (
-    <div id="accueil" className="relative isolate px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 min-h-screen flex items-center">
-      {/* Gradient de fond */}
+    <div
+      id="accueil"
+      className="relative isolate w-full min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 px-6 lg:px-8"
+    >
+      {/* Background gradient */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -14,52 +44,49 @@ function Hero() {
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
           }}
-          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-yellow-500 to-gray-800 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+          className="relative left-1/2 aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-yellow-500 to-gray-800 opacity-30 sm:w-[72.1875rem]"
         />
       </div>
 
-      {/* Contenu central */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="mx-auto max-w-2xl text-center"
-      >
+      <div className="flex flex-col items-center justify-center w-full max-w-3xl text-center">
+        {/* Animated Text */}
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="font-poppins text-4xl font-extrabold tracking-tight sm:text-5xl text-yellow-500"
+          className="font-poppins text-4xl md:text-5xl font-extrabold tracking-tight sm:text-6xl text-yellow-500"
         >
-          Créez l'extraordinaire !
+          Je suis{" "}
+          <span ref={changingTextRef}></span>
         </motion.h1>
+
+        {/* Description */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-6 font-poppins text-lg sm:text-lg text-yellow-300 leading-relaxed"
+          className="mt-6 font-poppins text-lg sm:text-xl text-yellow-300 leading-relaxed"
         >
-          Des solutions sur-mesure pour concrétiser vos idées. Découvrez mes
-          projets et compétences.
+          Étudiant en deuxième année de développement digital à l'ISGI Casablanca.
         </motion.p>
 
-        {/* Boutons */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-10"
         >
           <a
-            href="/cv.pdf"  // Lien vers le fichier PDF dans le dossier public
-            target="_blank" // Ouvre le PDF dans un nouvel onglet
-            rel="noopener noreferrer" // Sécurise l'ouverture du lien
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-md font-poppins bg-yellow-500 px-6 py-3 text-lg font-bold text-gray-800 shadow-lg hover:bg-yellow-400 hover:shadow-yellow-500 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
           >
             Explorez mon CV
           </a>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }

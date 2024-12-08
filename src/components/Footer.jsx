@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin, FaGithub } from "react-icons/fa";
-import { FiHome } from "react-icons/fi";
+import { FiFile, FiHome, FiPhone } from "react-icons/fi";
 
 function Footer() {
   return (
@@ -110,12 +110,14 @@ function Footer() {
           href="#projets"
           className="text-gray-300 hover:text-yellow-400 transition flex items-center gap-2"
         >
+          <FiFile className="text-lg" />
           Projets
         </a>
         <a
           href="#contactez-moi"
           className="text-gray-300 hover:text-yellow-400 transition flex items-center gap-2"
         >
+          <FiPhone className="text-lg" />
           Contactez-moi
         </a>
       </motion.div>

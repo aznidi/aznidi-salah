@@ -19,7 +19,7 @@ const generateRandomLineStyles = () => {
     width: randomLength,
     height: randomWidth,
   };
-};p
+};
 
 
 function Footer() {

@@ -145,7 +145,7 @@ function Footer() {
         transition={{ duration: 1 }}
       >
         <a
-          href="#acceuil"
+          href="#accueil"
           className="text-gray-300 hover:text-yellow-400 transition flex items-center gap-2"
         >
           <FiHome className="text-lg" />

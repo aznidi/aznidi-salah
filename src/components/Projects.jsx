@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import portfolio from '../assets/image.png'
 import enote from '../assets/enote.png'
-import isgihub from '../assets/ISGIHub.png'
+import isgihub from '../assets/isgihub.png'
 
 const ProjectCard = ({ title, description, image, liveLink, githubLink }) => {
   const isLiveLinkAvailable = Boolean(liveLink);

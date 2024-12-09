@@ -9,13 +9,13 @@ Ce portfolio a été conçu avec des technologies modernes pour refléter mes co
 - *Déploiement* : [Vercel](https://vercel.com)  
 
 ## 📂 Projets réalisés  
-### 🖥 [E-NOTE](https://aznidi.vercel.app/projets/e-note)  
+### 🖥 E-NOTE.  
 - *Description* : Plateforme pour suivre l'avancement des formations des formateurs selon les groupes et modules.  
 - *Technologies* : PHP, MySQL, Bootstrap, jQuery, AJAX  
 
-### 🌐 [ISGIHub](https://aznidi.vercel.app/projets/isgihub)  
-- *Description* : Plateforme communautaire pour l'échange de documents entre stagiaires.  
-- *Technologies* : React, Tailwind CSS  
+### 🌐 [ISGIDocs](https://docsisgi.vercel.app/)  
+- *Description* : Plateforme pour l'échange de documents entre stagiaires.  
+- *Technologies* : React, Tailwind CSS  (En Cours).
 
 ### 💼 [Portfolio Moderne](https://aznidi.vercel.app)  
 - *Description* : Mon portfolio interactif mettant en valeur mes compétences et mes projets.  
@@ -29,6 +29,6 @@ Découvrez mon CV complet pour plus d'informations sur mon parcours et mes comp�
 Je suis toujours à la recherche de nouvelles opportunités et collaborations. N'hésitez pas à me contacter :  
 - *Email* : salahaznidi09@gmail.com  
 - *Téléphone* : +212 611 385 792  
-- *LinkedIn* : [Salah Aznidi](https://www.linkedin.com/in/salah-aznidi)  
+- *LinkedIn* : [Salah Aznidi](www.linkedin.com/in/aznidi)  
 
 ✨ Merci de visiter mon portfolio !

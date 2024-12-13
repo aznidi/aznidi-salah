@@ -117,7 +117,7 @@ function Footer() {
         transition={{ duration: 1 }}
       >
         <a
-          href="https://www.linkedin.com/in/salah-aznidi-96028530a/"
+          href="https://www.linkedin.com/in/aznidi/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-300 hover:text-yellow-400 transition text-sm"
@@ -126,7 +126,7 @@ function Footer() {
           LinkedIn
         </a>
         <a
-          href="https://github.com/sasswinss"
+          href="https://github.com/aznidi"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-300 hover:text-yellow-400 transition text-sm"

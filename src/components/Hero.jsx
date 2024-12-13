@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
+import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
 gsap.registerPlugin(TextPlugin);
 
@@ -9,7 +10,7 @@ function Hero() {
   const changingTextRef = useRef(null);
 
   useEffect(() => {
-    const texts = ["Salah Aznidi", "un Développeur Fullstack"];
+    const texts = ["Salah Aznidi", "SaS", "un Développeur Fullstack"];
     let currentIndex = 0;
 
     const changeText = () => {
@@ -20,7 +21,7 @@ function Hero() {
           ease: "power3.inOut",
           onComplete: () => {
             currentIndex = (currentIndex + 1) % texts.length;
-            setTimeout(changeText, 2000);
+            setTimeout(changeText, 1500);
           },
         });
       }
@@ -29,27 +30,26 @@ function Hero() {
     changeText();
   }, []);
 
-  const generateRandomLineStyles = () => {
-    const randomTop = Math.random() * 100 + "%";
-    const randomLeft = Math.random() * 70 + "%";
-    const randomRotation = Math.random() * 190 + "deg";
-    const randomLength = Math.random() * 70 + "px";
-    const randomWidth = Math.random() * 1 + "px"; // Thin lines
-    return {
-      top: randomTop,
-      left: randomLeft,
-      transform: `rotate(${randomRotation})`,
-      width: randomLength,
-      height: randomWidth,
-    };
-  };
+  const technologies = [
+    { name: "Docker", img: "/docker.svg" },
+    { name: "JavaScript", img: "/python.svg" },
+    { name: "Tailwind CSS", img: "/tailwind.svg" },
+    { name: "CSS3", img: "/react.svg" },
+    { name: "Laravel", img: "/laravel.svg" },
+    { name: "Mysql", img: "/mysql.svg" },
+    { name: "GIT", img: "/git.svg" },
+  ];
 
-  const lines = Array.from({ length: 15 }).map(() => generateRandomLineStyles());
+  const socialLinks = [
+    { name: "GitHub", icon: <FaGithub size={28} />, link: "https://github.com/aznidi" },
+    { name: "LinkedIn", icon: <FaLinkedin size={28} />, link: "https://www.linkedin.com/in/aznidi/" },
+    { name: "Email", icon: <FaEnvelope size={28} />, link: "mailto:salahaznidi09@gmail.com" },
+  ];
 
   return (
     <div
       id="accueil"
-      className="relative isolate w-full min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 px-6 lg:px-8"
+      className="relative isolate w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 px-6 lg:px-8"
     >
       {/* Background gradient */}
       <div
@@ -66,14 +66,6 @@ function Hero() {
       </div>
 
       {/* Decorative lines */}
-      {lines.map((lineStyle, index) => (
-        <div
-          key={index}
-          className="absolute bg-yellow-500"
-          style={lineStyle}
-        />
-      ))}
-
       <div className="flex flex-col items-center justify-center w-full max-w-3xl text-center">
         {/* Animated Text */}
         <motion.h1
@@ -82,19 +74,9 @@ function Hero() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="font-poppins text-4xl md:text-5xl font-extrabold tracking-tight sm:text-6xl text-yellow-500"
         >
-          Je suis{" "}
-          <span ref={changingTextRef}></span>
+          Je suis <span ref={changingTextRef}></span>
         </motion.h1>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-6 font-poppins text-lg sm:text-xl text-yellow-300 leading-relaxed"
-        >
-          Étudiant en deuxième année de développement digital à l'ISGI Casablanca.
-        </motion.p>
 
         {/* Call to Action */}
         <motion.div
@@ -112,6 +94,41 @@ function Hero() {
             Explorez mon CV
           </a>
         </motion.div>
+      </div>
+
+      {/* Social Links */}
+      <div className="mt-6 flex flex-col items-center">
+        <div className="flex gap-6">
+          {socialLinks.map((social, index) => (
+            <a
+              key={index}
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-16 h-16 flex items-center justify-center 
+              text-lg font-bold  shadow-lg hover:shadow-yellow-500 rounded-md
+              transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer bg-transparent"
+            >
+              {social.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Skills Section */}
+      <div className="mt-12 w-full flex flex-wrap justify-center gap-6 px-4">
+        {technologies.map((tech, index) => (
+          <motion.div
+            key={index}
+            className="w-16 h-16 flex items-center justify-center overflow-hidden rounded-full bg-transparent transition-transform"
+          >
+            <img
+              src={tech.img}
+              alt={tech.name}
+              className="object-contain w-14 h-14"
+            />
+          </motion.div>
+        ))}
       </div>
     </div>
   );

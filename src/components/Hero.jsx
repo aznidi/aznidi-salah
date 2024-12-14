@@ -5,9 +5,24 @@ import { TextPlugin } from "gsap/TextPlugin";
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
 gsap.registerPlugin(TextPlugin);
+const generateRandomLineStyles = () => {
+  const randomTop = Math.random() * 100 + "%";
+  const randomLeft = Math.random() * 70 + "%";
+  const randomRotation = Math.random() * 190 + "deg";
+  const randomLength = Math.random() * 70 + "px";
+  const randomWidth = Math.random() * 1 + "px"; // Thin lines
+  return {
+    top: randomTop,
+    left: randomLeft,
+    transform: `rotate(${randomRotation})`,
+    width: randomLength,
+    height: randomWidth,
+  };
+};
 
 function Hero() {
   const changingTextRef = useRef(null);
+  const lines = Array.from({ length: 15 }).map(() => generateRandomLineStyles());
 
   useEffect(() => {
     const texts = ["Salah Aznidi", "SaS", "un Développeur Fullstack"];
@@ -30,15 +45,6 @@ function Hero() {
     changeText();
   }, []);
 
-  const technologies = [
-    { name: "Docker", img: "/docker.svg" },
-    { name: "JavaScript", img: "/python.svg" },
-    { name: "Tailwind CSS", img: "/tailwind.svg" },
-    { name: "CSS3", img: "/react.svg" },
-    { name: "Laravel", img: "/laravel.svg" },
-    { name: "Mysql", img: "/mysql.svg" },
-    { name: "GIT", img: "/git.svg" },
-  ];
 
   const socialLinks = [
     { name: "GitHub", icon: <FaGithub size={28} />, link: "https://github.com/aznidi" },
@@ -51,7 +57,7 @@ function Hero() {
       id="accueil"
       className="relative isolate w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 px-6 lg:px-8"
     >
-      {/* Background gradient */}
+      {/* Background gradient and lines */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -66,16 +72,37 @@ function Hero() {
       </div>
 
       {/* Decorative lines */}
-      <div className="flex flex-col items-center justify-center w-full max-w-3xl text-center">
+      {lines.map((lineStyle, index) => (
+        <div
+          key={index}
+          className="absolute bg-yellow-500"
+          style={lineStyle}
+        />
+      ))}
+
+      {/* Decorative lines */}
+      <div className="flex flex-col items-center justify-center w-full max-w-4xl text-center">
         {/* Animated Text */}
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="font-poppins text-4xl md:text-5xl font-extrabold tracking-tight sm:text-6xl text-yellow-500"
+          className="mt-16 font-poppins text-4xl md:text-5xl font-extrabold tracking-tight sm:text-6xl text-yellow-500"
         >
           Je suis <span ref={changingTextRef}></span>
         </motion.h1>
+
+        {/* Description */}
+        <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="mt-12 font-poppins text-lg sm:text-xl max-w-2xl text-yellow-300 leading-relaxed"
+          >
+            À la recherche d'un <span className="font-semibold uppercase text-xl tracking-tight">stage</span> , je souhaite appliquer mes connaissances, progresser sur le
+            terrain et relever de nouveaux défis
+        </motion.p>
+
 
 
         {/* Call to Action */}
@@ -95,9 +122,11 @@ function Hero() {
           </a>
         </motion.div>
       </div>
+ 
+
 
       {/* Social Links */}
-      <div className="mt-6 flex flex-col items-center">
+      <div className="mt-16 flex flex-col items-center">
         <div className="flex gap-6">
           {socialLinks.map((social, index) => (
             <a
@@ -106,29 +135,13 @@ function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="w-16 h-16 flex items-center justify-center 
-              text-lg font-bold  shadow-lg hover:shadow-yellow-500 rounded-md
-              transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer bg-transparent"
+              text-lg font-bold hover:shadow-yellow-500 hover:shadow-md rounded-md
+              transition-all duration-300 ease-in-out transform cursor-pointer bg-transparent"
             >
               {social.icon}
             </a>
           ))}
         </div>
-      </div>
-
-      {/* Skills Section */}
-      <div className="mt-12 w-full flex flex-wrap justify-center gap-6 px-4">
-        {technologies.map((tech, index) => (
-          <motion.div
-            key={index}
-            className="w-16 h-16 flex items-center justify-center overflow-hidden rounded-full bg-transparent transition-transform"
-          >
-            <img
-              src={tech.img}
-              alt={tech.name}
-              className="object-contain w-14 h-14"
-            />
-          </motion.div>
-        ))}
       </div>
     </div>
   );

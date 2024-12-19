@@ -82,7 +82,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="font-poppins text-3xl md:text-4xl lg:text-5xl 
-            xl:text-6xl lg:font-extrabold xl:font-bold tracking-tight text-yellow-500"
+            xl:text-6xl font-extrabold tracking-tight text-yellow-500"
           >
             <span ref={changingTextRef}></span>
           </motion.h1>
@@ -91,7 +91,8 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="font-poppins text-lg sm:text-xl lg:text-2xl max-w-2xl text-yellow-300 leading-relaxed"
+            className="font-poppins text-lg sm:text-xl font-semibold
+            lg:text-2xl max-w-2xl text-yellow-300 leading-relaxed"
           >
             À la recherche d'un <span className="font-bold uppercase text-xl tracking-tight">stage</span>.
           </motion.p>

@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-import portfolio from '../assets/image.png'
+import portfolio from '../assets/portfolio.png'
 import enote from '../assets/enote.png'
 import isgihub from '../assets/isgihub.png'
+import isgidocs from '../assets/isgidocs.png'
 
 const generateRandomLineStyles = () => {
   const randomTop = Math.random() * 100 + "%";
@@ -119,8 +120,16 @@ const ProjetSection = () => {
       description: "Une plateforme communautaire pour faciliter l'échange de documents entre les stagiaires.",
       image: isgihub,
       liveLink: "https://spontaneous-fox-1e53d6.netlify.app/",
-      githubLink: "https://github.com/sasswinss/docs-isgi-front",
+      githubLink: "https://github.com/aznidi/isgihub-front",
+    },
+    {
+      title: "ISGIDocs",
+      description: "Une plateforme web qui permet aux stagiaires et étudiants de trouver facilement les ressources et documents pédagogiques liés à l'établissement,",
+      image: isgidocs,
+      liveLink: "https://docsisgi.vercel.app/",
+      githubLink: "https://github.com/aznidi/docs-isgi-frontend",
     }
+
   ];
 
   return (

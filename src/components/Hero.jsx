@@ -5,6 +5,7 @@ import { TextPlugin } from "gsap/TextPlugin";
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
 gsap.registerPlugin(TextPlugin);
+
 const generateRandomLineStyles = () => {
   const randomTop = Math.random() * 100 + "%";
   const randomLeft = Math.random() * 70 + "%";
@@ -25,7 +26,7 @@ function Hero() {
   const lines = Array.from({ length: 15 }).map(() => generateRandomLineStyles());
 
   useEffect(() => {
-    const texts = ["Salah Aznidi", "SaS", "un Développeur Fullstack"];
+    const texts = ["Je suis AZNIDI Salah", "Un Développeur Fullstack"];
     let currentIndex = 0;
 
     const changeText = () => {
@@ -45,7 +46,6 @@ function Hero() {
     changeText();
   }, []);
 
-
   const socialLinks = [
     { name: "GitHub", icon: <FaGithub size={28} />, link: "https://github.com/aznidi" },
     { name: "LinkedIn", icon: <FaLinkedin size={28} />, link: "https://www.linkedin.com/in/aznidi/" },
@@ -55,7 +55,8 @@ function Hero() {
   return (
     <div
       id="accueil"
-      className="relative isolate w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 px-6 lg:px-8"
+      className="relative isolate min-w-full min-h-screen flex items-center  justify-center
+       bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 px-6 lg:px-8"
     >
       {/* Background gradient and lines */}
       <div
@@ -71,78 +72,88 @@ function Hero() {
         />
       </div>
 
-      {/* Decorative lines */}
-      {lines.map((lineStyle, index) => (
-        <div
-          key={index}
-          className="absolute bg-yellow-500"
-          style={lineStyle}
-        />
-      ))}
+            {/* Main Content */}
+      <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mt-16">
+        {/* Left Section */}
+        <div className="flex flex-col items-center lg:items-start text-center
+         lg:text-left space-y-6 lg:space-y-8 flex-[1] min-w-[300px]">
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="font-poppins text-3xl md:text-4xl lg:text-5xl 
+            xl:text-6xl lg:font-extrabold xl:font-bold tracking-tight text-yellow-500"
+          >
+            <span ref={changingTextRef}></span>
+          </motion.h1>
 
-      {/* Decorative lines */}
-      <div className="flex flex-col items-center justify-center w-full max-w-4xl text-center">
-        {/* Animated Text */}
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-16 font-poppins text-4xl md:text-5xl font-extrabold tracking-tight sm:text-6xl text-yellow-500"
-        >
-          Je suis <span ref={changingTextRef}></span>
-        </motion.h1>
-
-        {/* Description */}
-        <motion.p
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-12 font-poppins text-lg sm:text-xl max-w-2xl text-yellow-300 leading-relaxed"
+            className="font-poppins text-lg sm:text-xl lg:text-2xl max-w-2xl text-yellow-300 leading-relaxed"
           >
-            À la recherche d'un <span className="font-semibold uppercase text-xl tracking-tight">stage</span> , je souhaite appliquer mes connaissances, progresser sur le
-            terrain et relever de nouveaux défis
-        </motion.p>
+            À la recherche d'un <span className="font-bold uppercase text-xl tracking-tight">stage</span>.
+          </motion.p>
 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+          >
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md font-poppins bg-yellow-500 px-6 py-3 text-lg font-bold text-gray-800 shadow-lg hover:bg-yellow-400 hover:shadow-yellow-500 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+            >
+              Explorez mon CV
+            </a>
+          </motion.div>
+          <hr className="w-60 text-yellow-300 bg-yellow-300"/>
 
-
-        {/* Call to Action */}
-        <motion.div
+          <motion.p
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="mt-10"
+           className="font-poppins mt-10 font-bold text-lg sm:text-xl lg:text-2xl max-w-2xl text-yellow-300 leading-relaxed">
+            Get in Touch
+          </motion.p>
+
+          <motion.div className="flex gap-6" initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}>
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center 
+                text-lg font-bold hover:shadow-yellow-500 hover:shadow-md rounded-md
+                 transition-all duration-300 ease-in-out transform cursor-pointer bg-transparent"
+              >
+                {social.icon}
+              </a>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Right Section (Image) */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="hidden lg:block lg:ml-8 flex-[1]"
         >
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md font-poppins bg-yellow-500 px-6 py-3 text-lg font-bold text-gray-800 shadow-lg hover:bg-yellow-400 hover:shadow-yellow-500 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-          >
-            Explorez mon CV
-          </a>
+          <img
+            src="/hero.jpeg"
+            alt="Hero"
+            className="w-96 h-96 lg:w-96 lg:h-96 xl:w-96 xl:h-96 object-cover rounded-md shadow-md"
+          />
         </motion.div>
       </div>
- 
 
-
-      {/* Social Links */}
-      <div className="mt-16 flex flex-col items-center">
-        <div className="flex gap-6">
-          {socialLinks.map((social, index) => (
-            <a
-              key={index}
-              href={social.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-16 h-16 flex items-center justify-center 
-              text-lg font-bold hover:shadow-yellow-500 hover:shadow-md rounded-md
-              transition-all duration-300 ease-in-out transform cursor-pointer bg-transparent"
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

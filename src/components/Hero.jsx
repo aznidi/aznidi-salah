@@ -71,6 +71,14 @@ function Hero() {
           className="relative left-1/2 aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-yellow-500 to-gray-800 opacity-30 sm:w-[72.1875rem]"
         />
       </div>
+      {/* Decorative lines */}
+      {lines.map((lineStyle, index) => (
+        <div
+          key={index}
+          className="absolute bg-yellow-500"
+          style={lineStyle}
+        />
+      ))}
 
             {/* Main Content */}
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mt-16">

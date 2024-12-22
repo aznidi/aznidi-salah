@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
+import CvVideo from "./components/CvVideo";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       
       <Navbar />
       <Hero />
+      <CvVideo />
       <Slider />
       <About />
       <Contact />

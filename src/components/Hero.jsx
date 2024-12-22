@@ -119,7 +119,9 @@ function Hero() {
               Explorez mon CV
             </a>
           </motion.div>
-          <hr className="w-60 text-yellow-300 bg-yellow-300"/>
+          <motion.hr initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.7, duration: 0.6 }} className="w-60 text-yellow-300 bg-yellow-300"/>
 
           <motion.p
           initial={{ opacity: 0, scale: 0.95 }}
@@ -153,7 +155,7 @@ function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="hidden lg:block lg:ml-8 flex-[1]"
+          className="hidden lg:block lg:ml-8 flex-[1] z-10"
         >
           <img
             src="/hero.jpeg"

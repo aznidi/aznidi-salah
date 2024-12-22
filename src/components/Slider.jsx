@@ -153,7 +153,7 @@ const Slider = () => {
   return (
     <div className="relative isolate px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-500 min-h-screen flex flex-col items-center">
       <motion.h2
-        className="text-4xl font-bold text-center mb-12 font-poppins"
+        className="text-4xl font-bold text-center mt-20 mb-12 font-poppins"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
       >

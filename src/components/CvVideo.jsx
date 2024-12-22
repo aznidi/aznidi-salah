@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-function CvVideo() {
+function CvVideo({ onVideoLoad }) {
   const [isVideoInView, setIsVideoInView] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(1); // Valeur initiale du volume (max)
@@ -50,6 +50,11 @@ function CvVideo() {
     setProgress(state.played * 100); // En pourcentage
   };
 
+  // Fonction appelée lorsque la vidéo est complètement chargée
+  const handleVideoLoad = () => {
+    onVideoLoad(); // Appeler la fonction du parent pour mettre à jour l'état de chargement
+  };
+
   return (
     <div
       id="accueil"
@@ -76,6 +81,7 @@ function CvVideo() {
             height="100%"
             className="object-cover rounded-xl shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
             onProgress={handleProgress} // Mise à jour de la barre de progression
+            onLoadedData={handleVideoLoad} // Appeler handleVideoLoad lorsque la vidéo est chargée
           />
         </motion.div>
       </div>

@@ -11,7 +11,7 @@ import CvVideo from "./components/CvVideo";
 import "./index.css"; // Fichier CSS global
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // Fonction pour mettre à jour l'état de chargement lorsque la vidéo est prête
   const handleVideoLoad = () => {

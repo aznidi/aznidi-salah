@@ -10,7 +10,6 @@ import CvVideo from "./components/CvVideo";
 import "./index.css"; // Fichier CSS global
 
 function App() {
-
   return (
     <>
           <Navbar />

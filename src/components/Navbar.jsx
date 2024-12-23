@@ -41,7 +41,7 @@ function Navbar() {
             className="flex items-center"
           >
             <img
-              src="/profilebg.png" // Assurez-vous que le fichier profile.png est bien dans le dossier public
+              src="/profile.jpeg" // Assurez-vous que le fichier profile.png est bien dans le dossier public
               alt="Profile"
               className="w-10 h-10 rounded-full md:w-10 md:h-10 object-cover cursor-pointer "
             />

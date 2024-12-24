@@ -66,9 +66,7 @@ function Footer() {
           Développeur Full Stack • Passionné par le backend
         </p>
         <p className="text-sm text-gray-400 mt-2 max-w-md mx-auto">
-          Je suis un jeune développeur âgé de 19 ans, basé à Casablanca. J'aime
-          travailler avec des bases de données et résoudre des problèmes
-          complexes côté serveur.
+          Développeur full-stack basé à Casablanca, passionné par la création de solutions numériques innovantes. Étudiant en développement digital à l'ISGI Casablanca, j'ai participé à des projets variés et au Hackathon 2024 de l'OFPPT. Compétences : React, Laravel, PHP, SQL, DevOps et plus.
         </p>
       </motion.div>
 
